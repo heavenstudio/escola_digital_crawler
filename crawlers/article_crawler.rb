@@ -42,13 +42,13 @@ class ArticleCrawler
     @attrs[:link] =                @doc.css('#link_oda a').first[:href]
     @attrs[:tags] =                @doc.css('#tags_oda a').map(&:text)
     @attrs[:media] =               @doc.css('#tipo_midia a').first.text
-    @attrs[:category] =            @doc.css('#tipo_recurso a').first.text
+    @attrs[:category] =            @doc.css('#tipo_recurso a').first.text if @doc.at_css('#tipo_recurso a')
     @attrs[:image_url] =           @doc.css('#imagem_oda_1 img').first[:src] if @doc.at_css('#imagem_oda_1 img')
     @attrs[:related_content] =     @doc.css('#odas_relacionados a').map{|a| a[:href] }.uniq
 
     # Col 1
-    @attrs[:discipline] =          find_attribute('Disciplina:')
-    @attrs[:year] =                find_attribute('Ano/Série:')
+    @attrs[:disciplines] =         find_attribute_with_multiple_values('Disciplina:')
+    @attrs[:years] =               find_attribute_with_multiple_values('Ano/Série:')
     @attrs[:multidisciplinarity] = find_attribute_with_multiple_values('Multidisciplinaridade:')
     @attrs[:language] =            find_attribute('Idioma:')
     @attrs[:country] =             find_attribute('País:')
