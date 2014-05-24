@@ -50,7 +50,7 @@ class ArticleCrawler
     @attrs[:disciplines] =         find_attribute_with_multiple_values('Disciplina:')
     @attrs[:years] =               find_attribute_with_multiple_values('Ano/Série:')
     @attrs[:multidisciplinarity] = find_attribute_with_multiple_values('Multidisciplinaridade:')
-    @attrs[:language] =            find_attribute('Idioma:')
+    @attrs[:idiom] =               find_attribute('Idioma:')
     @attrs[:country] =             find_attribute('País:')
 
     # Col 2
